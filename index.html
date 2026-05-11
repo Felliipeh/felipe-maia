@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Felipe Maia | lipe code</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { brand: { green: '#16a34a' } },
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    animation: {
+                        'fade-up': 'fadeInUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+                        'border-move': 'borderGradientMove 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            'from': { opacity: '0', transform: 'translateY(32px)' },
+                            'to': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        borderGradientMove: {
+                            '0%, 100%': { 'background-position': '0% 50%' },
+                            '50%': { 'background-position': '100% 50%' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style type="text/tailwindcss">
+        @layer components {
+            .avatar-container { @apply relative w-48 h-48 mb-8 flex items-center justify-center; }
+            
+            .avatar-ring {
+                @apply absolute inset-0 rounded-full p-1.5 bg-gradient-to-r from-brand-green via-black to-brand-green 
+                       bg-[length:400%_400%] animate-border-move shadow-xl z-0;
+            }
+
+            .avatar-img {
+                @apply w-full h-full object-cover rounded-full border-4 border-white bg-white shadow-xl z-10;
+                backface-visibility: hidden;
+                will-change: transform, opacity;
+                animation: profilePeekOnce 5s cubic-bezier(0.4, 0, 0.2, 1) 1 forwards;
+            }
+
+            .avatar-greeting {
+                @apply absolute inset-0 flex items-center justify-center rounded-full bg-brand-green text-white text-5xl font-bold opacity-0 scale-50 z-20 pointer-events-none;
+                backface-visibility: hidden;
+                will-change: transform, opacity;
+                animation: greetingPeekOnce 5s cubic-bezier(0.4, 0, 0.2, 1) 1 forwards;
+            }
+
+            .btn-premium {
+                @apply flex items-center justify-center gap-3 w-full py-4 px-6 rounded-2xl font-semibold 
+                       transition-all duration-300 transform hover:-translate-y-1 active:scale-95;
+            }
+        }
+
+        @keyframes profilePeekOnce {
+            0%, 15% { opacity: 1; transform: scale(1); }
+            25%, 75% { opacity: 0; transform: scale(0.8); }
+            85%, 100% { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes greetingPeekOnce {
+            0%, 20% { opacity: 0; transform: scale(0.5); }
+            35%, 65% { opacity: 1; transform: scale(1.1); }
+            80%, 100% { opacity: 0; transform: scale(0.5); }
+        }
+
+        body { background: linear-gradient(180deg, #fdfdfd 0%, #f4f7f9 100%); }
+    </style>
+</head>
+
+<body class="text-slate-700 antialiased min-h-screen flex flex-col items-center px-6 py-12">
+
+    <!-- Botão de Compartilhar -->
+    <div class="fixed top-6 right-6 z-50 animate-fade-up [animation-delay:900ms]">
+        <button onclick="handleShare()" class="p-3.5 bg-brand-green text-white rounded-full shadow-xl hover:scale-110 active:scale-95 transition-all">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6L15.316 7.316M15 7a3 3 0 116 0 3 3 0 01-6 0zm6 10a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+        </button>
+    </div>
+
+    <div class="max-w-md w-full flex flex-col items-center flex-grow animate-fade-up [animation-delay:200ms]">
+        
+        <header class="w-full flex flex-col items-center text-center mb-10">
+            <div class="avatar-container">
+                <div class="avatar-ring"></div>
+                <!-- Coloque sua foto em /pages/ft-perfil.png -->
+                <img src="/img/ft-perfil (1).png" alt="Felipe Maia" class="avatar-img" />
+                <div class="avatar-greeting">👋</div>
+                <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-12 h-1 bg-brand-green rounded-full"></div>
+            </div>
+
+            <h1 class="text-xs font-bold uppercase tracking-[0.3em] text-black mb-6">Felipe Maia | lipe code</h1>
+
+    <p class="text-slate-500 text-xs font-medium mb-4" style="margin-top:-18px;">Criador da plataforma <a href="https://menubairro.com" target="_blank" class="text-brand-green font-bold no-underline hover:text-green-800 transition-colors">menubairro</a></p>
+
+            <div class="flex items-center gap-2 text-sm font-semibold bg-white/50 px-4 py-2 rounded-full border border-slate-100 shadow-sm">
+                <span class="text-sm font-semibold text-brand-green flex items-center gap-2"><span class="text-green-600">Dev Web</span> <span class="text-slate-400 mx-1">•</span> 🤝 Experiência do cliente</span>
+            </div>
+        </header>
+
+        <main class="w-full space-y-4 animate-fade-up [animation-delay:500ms]">
+            <!-- Link Principal: WhatsApp -->
+            <a href="https://wa.me/5598984021537?text=Olá, Felipe! Vi seu Bio Link e gostaria de um orçamento." class="btn-premium bg-brand-green text-white shadow-2xl shadow-green-900/20 py-5 font-bold">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 32 32">
+                    <path d="M16 3C9.373 3 4 8.373 4 15c0 2.646.865 5.1 2.34 7.1L4 29l7.1-2.34A11.93 11.93 0 0 0 16 27c6.627 0 12-5.373 12-12S22.627 3 16 3zm0 22c-1.97 0-3.81-.57-5.36-1.56l-.38-.24-4.22 1.39 1.39-4.22-.24-.38A9.94 9.94 0 0 1 6 15c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10zm5.27-7.03c-.29-.15-1.7-.84-1.96-.93-.26-.1-.45-.15-.64.15-.19.29-.74.93-.91 1.12-.17.19-.34.22-.63.07-.29-.15-1.22-.45-2.33-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.43-.51.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.64-1.54-.88-2.11-.23-.56-.47-.49-.64-.5-.17-.01-.36-.01-.56-.01-.19 0-.5.07-.76.36-.26.29-1 1-.97 2.43.03 1.43 1.03 2.81 1.18 3.01.15.19 2.03 3.1 4.93 4.22.69.27 1.23.43 1.65.55.69.22 1.32.19 1.81.12.55-.08 1.7-.7 1.94-1.38.24-.67.24-1.25.17-1.38-.07-.13-.26-.2-.55-.35z" />
+                </svg>
+                Solicitar Orçamento Grátis
+            </a>
+
+            <!-- Link Portfólio / Projetos -->
+            <a href="/projetos.html" class="btn-premium bg-white border border-green-100 shadow-sm text-brand-green">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                </svg>
+                Ver Meus Projetos (Portfólio)
+            </a>
+
+            <!-- Botão Conheça a menubairro -->
+            <!-- <a href="https://menubairro.com" target="_blank" class="btn-premium bg-white border border-green-100 shadow-sm text-brand-green"> -->
+                <!-- Ícone de navegador/internet (globo) -->
+                <!-- <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none" />
+                    <path stroke="currentColor" stroke-width="2" fill="none" d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20" />
+                </svg>
+                Conheça a menubairro
+            </a> -->
+
+            <!-- Link E-mail -->
+            <a href="mailto:menubairrocontato@gmail.com" class="btn-premium bg-white border border-green-100 shadow-sm text-brand-green">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 0 0 2.22 0L21 8M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z" />
+                </svg>
+                E-mail Profissional
+            </a>
+        </main>
+
+        <footer class="mt-auto pt-16 pb-8 text-center animate-fade-up [animation-delay:700ms]">
+            <a href="https://www.instagram.com/itallo_fellipe/" target="_blank" class="inline-flex items-center gap-2 text-black hover:text-brand-green transition-colors text-sm font-bold uppercase tracking-widest mb-8">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5zm4.25 2.75a5.75 5.75 0 1 1 0 11.5a5.75 5.75 0 0 1 0-11.5zm0 1.5a4.25 4.25 0 1 0 0 8.5a4.25 4.25 0 0 0 0-8.5zm5.25 1.25a1 1 0 1 1-2 0a1 1 0 0 1 2 0z" /></svg>
+                Siga no Instagram
+            </a>
+            <div class="space-y-1 text-[10px] font-semibold tracking-widest">
+                <p class="text-black font-bold uppercase tracking-[0.4em]">São Luís - Maranhão</p>
+                <p class="text-green-700 opacity-80">© Todos os direitos reservados a Felipe Maia</p>
+                <p class="text-green-700">Desenvolvido por <span class="text-brand-green underline">menubairro</span></p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        async function handleShare() {
+            try {
+                if (navigator.share) {
+                    await navigator.share({ 
+                        title: 'Felipe Maia | Lipe Code', 
+                        text: 'Confira o trabalho de Felipe Maia, desenvolvedor focado em experiência do usuário.',
+                        url: window.location.href 
+                    });
+                } else {
+                    await navigator.clipboard.writeText(window.location.href);
+                    alert('Link copiado para a área de transferência!');
+                }
+            } catch (e) { console.warn('Share falhou'); }
+        }
+    </script>
+</body>
+</html>

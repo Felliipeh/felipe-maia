@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projetos | Felipe Maia</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { brand: { green: '#16a34a' } },
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    animation: { 'fade-up': 'fadeInUp 0.8s ease-out forwards' },
+                    keyframes: {
+                        fadeInUp: {
+                            'from': { opacity: '0', transform: 'translateY(20px)' },
+                            'to': { opacity: '1', transform: 'translateY(0)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style type="text/tailwindcss">
+        @layer components {
+            .project-card {
+                @apply bg-white border border-slate-100 rounded-[2rem] p-7 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between h-full;
+            }
+            .logo-box {
+                @apply w-28 h-28 rounded-xl bg-slate-50 border border-slate-100 mb-5 flex items-center justify-center overflow-hidden shadow-inner mx-auto;
+            }
+            .tag {
+                @apply text-[9px] font-bold uppercase tracking-[0.15em] px-2.5 py-1 rounded-md bg-green-50 text-brand-green mb-3 inline-block;
+            }
+        }
+        body { background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%); }
+    </style>
+</head>
+
+<body class="text-slate-700 antialiased min-h-screen flex flex-col py-12 px-6">
+
+    <div class="max-w-4xl mx-auto w-full flex-grow">
+        
+        <!-- Header -->
+        <header class="mb-14 animate-fade-up">
+            <a href="index.html" class="text-brand-green font-bold text-sm inline-flex items-center gap-2 mb-10 hover:opacity-70 transition-opacity">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+                </svg>
+                VOLTAR
+            </a>
+            
+            <h1 class="text-4xl font-bold text-black mb-3">Portfólio</h1>
+            <p class="text-slate-500 font-medium">Projetos desenvolvidos por mim.</p>
+        </header>
+
+        <!-- Seção: Central de Links -->
+        <section class="mb-20">
+            <div class="mb-8">
+                <h2 class="text-xl font-bold text-brand-green mb-2">Projetos em Destaque</h2>
+                <p class="text-slate-500 text-sm leading-relaxed">
+                    Soluções personalizadas para facilitar o contato, vendas e a experiência do seu cliente.
+                </p>
+            </div>
+
+            <!-- Grid de Projetos (Alimentado pelo JS ou estático) -->
+            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8 animate-fade-up [animation-delay:200ms]">
+                <!-- O JavaScript vai inserir os cards aqui. 
+                     Mantenha os cards manuais apenas se NÃO for usar o projetos.json -->
+            </div>
+        </section>
+
+        <!-- CTA: Central de Links (movido para baixo dos projetos) -->
+        <div class="mt-8 p-6 bg-green-50 border border-green-100 rounded-2xl text-center shadow-sm">
+            <p class="text-brand-green text-lg font-semibold mb-4">
+                Quer uma <span class="font-bold">central de links</span> para facilitar suas vendas?
+            </p>
+            <a href="https://wa.me/5598984021537?text=Olá! Quero uma central de links." target="_blank" 
+               class="inline-block px-8 py-3 bg-brand-green text-white rounded-xl font-bold shadow-lg hover:bg-green-700 hover:scale-105 transition-all">
+                Fale comigo no WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-20 py-10 border-t border-slate-100 text-center animate-fade-up [animation-delay:400ms]">
+        <a href="https://instagram.com/seu-instagram" target="_blank" class="inline-flex items-center gap-2 text-black hover:text-brand-green transition-colors text-sm font-bold uppercase tracking-widest mb-8">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5zm4.25 2.75a5.75 5.75 0 1 1 0 11.5a5.75 5.75 0 0 1 0-11.5zm0 1.5a4.25 4.25 0 1 0 0 8.5a4.25 4.25 0 0 0 0-8.5zm5.25 1.25a1 1 0 1 1-2 0a1 1 0 0 1 2 0z" /></svg>
+            Siga no Instagram
+        </a>
+        <div class="space-y-2 text-[10px] font-semibold tracking-widest text-slate-400">
+            <p class="text-black font-bold uppercase tracking-[0.4em]">São Luís - Maranhão</p>
+            <p>© Felipe Maia - Todos os direitos reservados</p>
+            <p>Desenvolvido por <span class="text-brand-green">menubairro</span></p>
+        </div>
+    </footer>
+
+    <script>
+        async function carregarProjetos() {
+            const grid = document.getElementById('projects-grid');
+            try {
+                const resp = await fetch('projetos.json');
+                if (!resp.ok) throw new Error();
+                const projetos = await resp.json();
+                
+                grid.innerHTML = projetos.map(proj => `
+                    <div class="project-card">
+                        <div>
+                            <div class="logo-box">
+                                <img src="${proj.logo}" alt="Logo" class="w-full h-full object-contain" 
+                                     onerror="this.src='https://cdn-icons-png.flaticon.com/512/857/857681.png'">
+                            </div>
+                            <span class="tag">${proj.categoria}</span>
+                            <h3 class="text-xl font-bold text-black mb-2">${proj.nome}</h3>
+                            <p class="text-sm text-slate-500 leading-relaxed mb-6">${proj.descricao}</p>
+                        </div>
+                        <a href="${proj.link}" target="_blank" 
+                           class="w-full block py-3 bg-slate-50 rounded-xl text-sm font-bold text-brand-green hover:bg-brand-green hover:text-white transition-all border border-slate-100 text-center">
+                            Ver Projeto
+                        </a>
+                    </div>
+                `).join('');
+            } catch (e) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-10">
+                        <p class="text-slate-400">Não foi possível carregar os projetos dinamicamente.</p>
+                    </div>
+                `;
+            }
+        }
+        carregarProjetos();
+    </script>
+</body>
+</html>
